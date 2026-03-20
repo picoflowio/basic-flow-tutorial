@@ -1,0 +1,19 @@
+{% from 'modules/search/search.macro.njk' import searchInput %}
+
+<header class="app-header" x-data x-bind="WindowScroll">
+  {% include 'core/nav-toggle.partial.njk' %}
+
+  <img height=38 src="/images/logo.png" alt="{{ app.title }} logo" class="app-header__title-logo" />
+  <a href="https://www.picoflow.io" class="app-header__title">
+    <span class="app-header__title-text">{{ app.title }}</span>
+  </a>
+
+  <div class="app-header__search show-md">
+    {{ searchInput('overlay') }}
+  </div>
+
+  <div class="hide-md">
+    {% include 'modules/search/search-button.partial.njk' %}
+  </div>
+  {% include 'modules/themes/theme-switcher.partial.njk' %}
+</header>

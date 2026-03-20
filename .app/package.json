@@ -1,0 +1,58 @@
+{
+  "name": "eleventy-notes",
+  "version": "0.28.0",
+  "description": "",
+  "type": "module",
+  "scripts": {
+    "start": "npm-run-all clean -p css:watch js:watch 11ty:serve",
+    "build": "npm-run-all clean -p css:build js:build 11ty:build",
+    "11ty:serve": "eleventy --serve",
+    "11ty:build": "eleventy",
+    "themes:generate": "node ./scripts/generate-themes.js",
+    "css:watch": "node scripts/bundle-css.js --watch",
+    "js:watch": "node scripts/bundle-js.js --watch",
+    "css:build": "node scripts/bundle-css.js",
+    "js:build": "node scripts/bundle-js.js",
+    "clean": "rimraf dist"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@11ty/eleventy": "^3.0.0",
+    "@parcel/cache": "2.13.3",
+    "@parcel/config-default": "^2.13.3",
+    "@parcel/core": "^2.13.3",
+    "@parcel/fs": "2.13.3",
+    "@parcel/transformer-sass": "^2.13.0",
+    "@radix-ui/colors": "^3.0.0",
+    "cheerio": "^1.0.0",
+    "markdown-it": "^14.1.0",
+    "markdown-it-anchor": "^9.0.1",
+    "markdown-it-footnote": "^4.0.0",
+    "markdown-it-kbd-better": "^1.2.5",
+    "markdown-it-task-checkbox": "^1.0.6",
+    "nanohtml": "^1.10.0",
+    "node-html-parser": "^6.1.13",
+    "npm-run-all2": "^7.0.1",
+    "parcel": "^2.13.0",
+    "rimraf": "^6.0.1",
+    "sass": "^1.81.0"
+  },
+  "dependencies": {
+    "@shikijs/markdown-it": "^3.4.2",
+    "@shikijs/transformers": "^4.0.2",
+    "alpinejs": "^3.14.1",
+    "lucide": "^0.469.0",
+    "pagefind": "^1.1.0"
+  },
+  "pnpm": {
+    "onlyBuiltDependencies": [
+      "@parcel/watcher",
+      "@swc/core",
+      "lmdb",
+      "msgpackr-extract"
+    ]
+  },
+  "packageManager": "pnpm@10.0.0+sha512.b8fef5494bd3fe4cbd4edabd0745df2ee5be3e4b0b8b08fa643aa3e4c6702ccc0f00d68fa8a8c9858a735a0032485a44990ed2810526c875e416f001b17df12b"
+}
