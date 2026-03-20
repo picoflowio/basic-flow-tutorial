@@ -1,19 +1,21 @@
-# Learn Eleventy
+# picoflow.io — Basic Flow Tutorial
 
-This course was originally authored by [Andy Bell](https://github.com/Andy-set-studio) and hosted at [learneleventyfromscratch.com](https://learneleventyfromscratch.com/).
-This fork is now maintained by [uncenter](https://github.com/uncenter/).
+Static Eleventy site that teaches how to build Picoflow’s `BasicFlow` step-by-step. The content lives in the repo root (`*.md`, `app.mjs`, `app.styles.scss`) and the site engine is under `.app/`.
 
-## Features
+## Run locally
+- `cd basic-flow-tutorial/.app`
+- `npm install`
+- `npm run start` (serves at http://localhost:8080)
 
-- 🎈 Built with 11ty (https://github.com/Andy-set-studio/learneleventyfromscratch.com/issues/28).
-- 🎨 Syntax highlighting!
-- 🔦 Dark/light/system themes.
-- ✅ Up to date! Fixes/merges https://github.com/Andy-set-studio/learneleventyfromscratch.com/issues/31, https://github.com/Andy-set-studio/learneleventyfromscratch.com/pull/23, https://github.com/Andy-set-studio/learneleventyfromscratch.com/pull/36, https://github.com/Andy-set-studio/learneleventyfromscratch.com/pull/29, and https://github.com/Andy-set-studio/learneleventyfromscratch.com/issues/11.
+## Build
+- `cd basic-flow-tutorial/.app`
+- `npm run build` (outputs to `.app/dist`)
 
-## Contributing
-
-Content changes should ideally first be raised as issues where they can be discussed. Small corrections can be made directly in a pull request.
+## Content map
+- Lessons: `basic-flow-tutorial/*.md`
+- Site config: `basic-flow-tutorial/app.mjs`
+- Header styling: `basic-flow-tutorial/app.styles.scss`
+- Images: `basic-flow-tutorial/images/`
 
 ## License
-
-[MIT](LICENSE)
+MIT (inherits from the Eleventy Notes template).
