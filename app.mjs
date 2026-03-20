@@ -3,7 +3,7 @@ import { defineConfig, createNotesQuery } from './.app/app-config.js';
 import { defineTranslations } from './.app/app-translations.js';
 
 export default defineConfig({
-	title: 'Basic Flow Tutorial',
+	title: 'picoflow.io',
 	description: 'Hands-on guide to building Picoflow’s BasicFlow, step by step.',
 	editThisNote: {
 		url: 'https://github.com/uncenter/learn-eleventy/edit/{{branch}}/{{file}}',
