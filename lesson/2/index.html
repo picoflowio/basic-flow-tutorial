@@ -41,9 +41,9 @@
 </div>
 
 
-  <img height=38 src="/images/logo.png" alt="Basic Flow Tutorial logo" class="app-header__title-logo" />
+  <img height=38 src="/images/logo.png" alt="picoflow.io logo" class="app-header__title-logo" />
   <a href="https://www.picoflow.io" class="app-header__title">
-    <span class="app-header__title-text">Basic Flow Tutorial</span>
+    <span class="app-header__title-text">picoflow.io</span>
   </a>
 
   <div class="app-header__search show-md">
@@ -62,11 +62,11 @@
         role="combobox"
         aria-autocomplete="list"
         aria-haspopup="listbox"
-        aria-owns="id-5c3f64fb-popup"
-        aria-controls="id-5c3f64fb-popup"
+        aria-owns="id-1f0f1510-popup"
+        aria-controls="id-1f0f1510-popup"
         aria-activedescendant
         aria-expanded="false"
-        :aria-activedescendant="open && selectedId ? `id-5c3f64fb-result-${selectedId}` : ''"
+        :aria-activedescendant="open && selectedId ? `id-1f0f1510-result-${selectedId}` : ''"
         :aria-expanded="open"
         placeholder="Search..."
         class="search__input"
@@ -90,7 +90,7 @@
       
     </div>
     <template x-if="open">
-      <div class="search__popover" id="id-5c3f64fb-popup">
+      <div class="search__popover" id="id-1f0f1510-popup">
         <div x-show="!term" class="search__info" lang="en">
           Search for lessons by title and content.
         </div>
@@ -104,7 +104,7 @@
         <ul x-show="term && results && results.length" class="search__results" role="listbox" aria-label="Search Results">
           <template x-if="term && results && results.length">
             <template x-for="(result, index) in results" :key="result.id">
-              <li role="option" :id="`id-5c3f64fb-result-${result.id}`">
+              <li role="option" :id="`id-1f0f1510-result-${result.id}`">
                 <a
                   :href="result.url"
                   class="search__result"
@@ -140,38 +140,38 @@
 
 <div role="radiogroup" aria-label="Appearance" class="theme-switcher" x-data x-cloak lang="en">
   <input
-    id="id-45776260-light"
+    id="id-b6bfc914-light"
     type="radio"
     name="appearance"
     x-model="$store.appearance.theme"
     value="light"
     class="visually-hidden"
   >
-  <label for="id-45776260-light" class="theme-switcher__label" aria-label="Light">
+  <label for="id-b6bfc914-light" class="theme-switcher__label" aria-label="Light">
     <svg xmlns="http://www.w3.org/2000/svg" width="1.125em" height="1.125em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"></circle><path d="M12 2v2"></path><path d="M12 20v2"></path><path d="m4.93 4.93 1.41 1.41"></path><path d="m17.66 17.66 1.41 1.41"></path><path d="M2 12h2"></path><path d="M20 12h2"></path><path d="m6.34 17.66-1.41 1.41"></path><path d="m19.07 4.93-1.41 1.41"></path></svg>
   </label>
 
   <input
-    id="id-45776260-dark"
+    id="id-b6bfc914-dark"
     type="radio"
     name="appearance"
     x-model="$store.appearance.theme"
     value="dark"
     class="visually-hidden"
   >
-  <label for="id-45776260-dark" class="theme-switcher__label" aria-label="Dark">
+  <label for="id-b6bfc914-dark" class="theme-switcher__label" aria-label="Dark">
     <svg xmlns="http://www.w3.org/2000/svg" width="1.125em" height="1.125em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"></path></svg>
   </label>
 
   <input
-    id="id-45776260-system"
+    id="id-b6bfc914-system"
     type="radio"
     name="appearance"
     x-model="$store.appearance.theme"
     value="system"
     class="visually-hidden"
   >
-  <label for="id-45776260-system" class="theme-switcher__label" aria-label="System">
+  <label for="id-b6bfc914-system" class="theme-switcher__label" aria-label="System">
     <svg xmlns="http://www.w3.org/2000/svg" width="1.125em" height="1.125em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="14" x="2" y="3" rx="2"></rect><line x1="8" x2="16" y1="21" y2="21"></line><line x1="12" x2="12" y1="17" y2="21"></line></svg>
   </label>
 </div>
