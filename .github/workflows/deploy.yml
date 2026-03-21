@@ -11,8 +11,6 @@ permissions:
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
-    env:
-      ELEVENTY_NOTES_PATH_PREFIX: /basic-flow-tutorial
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
