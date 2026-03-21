@@ -1190,6 +1190,14 @@ input:checked + .theme-switcher__label svg {
 .app-header__title-text {
   font-family: "Kaushan Script", cursive;
   font-size: 2rem;
+  /* Keep the title from sliding under surrounding header controls */
+  transform: none;
+}
+
+.app-header__title {
+  /* Prevent title from shrinking/being clipped when header gets crowded */
+  flex-shrink: 0;
+  overflow: visible;
 }
 
 .app-header__title-link {

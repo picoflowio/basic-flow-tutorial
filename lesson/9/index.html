@@ -6,13 +6,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Hands-on guide to building Picoflow’s BasicFlow, step by step.">
     <title>Lesson 10: AddressStep → EndStep</title>
-    <script async="" src="https://analytik.uncenter.dev/script.js" data-website-id="a54aa25d-49be-48e6-8d84-34657b08aa8b"></script>
+    <script async src="https://analytik.uncenter.dev/script.js" data-website-id="a54aa25d-49be-48e6-8d84-34657b08aa8b"></script>
     <meta name="generator" content="Eleventy v3.1.2">
 
-    <link rel="icon" href="/basic-flow-tutorial/images/favicon.png" type="image/png">
-    <link rel="shortcut icon" href="/basic-flow-tutorial/images/favicon.png" type="image/png">
+    <link rel="icon" href='/images/favicon.png' type="image/png">
+    <link rel="shortcut icon" href='/images/favicon.png' type="image/png">
 
-    <link rel="stylesheet" href="/basic-flow-tutorial/app.sky.css">
+    <link rel="stylesheet" href="/app.sky.css">
   </head>
   <body>
     <script>document.documentElement.setAttribute("data-theme", /"(\w+)"+/.exec(localStorage.getItem("theme"))?.[1] || "system")</script>
@@ -25,9 +25,15 @@
     <div class="app-layout">
       
 
-<header class="app-header" x-data="" x-bind="WindowScroll">
+<header class="app-header" x-data x-bind="WindowScroll">
   <div class="hide-xl">
-  <button class="icon-btn" :aria-expanded="$store.nav.open" @click="$store.nav.toggle()" x-cloak="" lang="en">
+  <button
+    class="icon-btn"
+    :aria-expanded="$store.nav.open"
+    @click="$store.nav.toggle()"
+    x-cloak
+    lang="en"
+  >
     <span x-show="!$store.nav.open"><svg xmlns="http://www.w3.org/2000/svg" width="1.125em" height="1.125em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="4" x2="20" y1="12" y2="12"></line><line x1="4" x2="20" y1="6" y2="6"></line><line x1="4" x2="20" y1="18" y2="18"></line></svg></span>
     <span x-show="$store.nav.open"><svg xmlns="http://www.w3.org/2000/svg" width="1.125em" height="1.125em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18"></path><path d="m6 6 12 12"></path></svg></span>
     <span class="visually-hidden">Menu</span>
@@ -35,7 +41,7 @@
 </div>
 
 
-  <img height="38" src="/basic-flow-tutorial/images/logo.png" alt="Basic Flow Tutorial logo" class="app-header__title-logo">
+  <img height=38 src="/images/logo.png" alt="Basic Flow Tutorial logo" class="app-header__title-logo" />
   <a href="https://www.picoflow.io" class="app-header__title">
     <span class="app-header__title-text">Basic Flow Tutorial</span>
   </a>
@@ -47,10 +53,35 @@
 
   
 
-  <div x-cloak="" x-data="search" @click.away="open = false" class="search" data-mode="overlay">
+  <div x-cloak x-data="search" @click.away="open = false" class="search" data-mode="overlay">
     <div class="search__bar">
       <span class="search__icon" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" width="1.125em" height="1.125em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><path d="m21 21-4.3-4.3"></path></svg></span>
-      <input data-kbd-trigger="" type="search" role="combobox" aria-autocomplete="list" aria-haspopup="listbox" aria-owns="id-21329ffc-popup" aria-controls="id-21329ffc-popup" aria-activedescendant="" aria-expanded="false" :aria-activedescendant="open && selectedId ? `id-21329ffc-result-${selectedId}` : ''" :aria-expanded="open" placeholder="Search..." class="search__input" autocorrect="off" autocapitalize="off" enterkeyhint="search" required="" x-model="term" x-init="$store.hotkeys.register(&#39;/&#39;, () =&gt; $el.focus())" @focus="open = true" @keydown="onKeyDown" @pageshow.window="term = $el.value" lang="en">
+      <input
+        data-kbd-trigger
+        type="search"
+        role="combobox"
+        aria-autocomplete="list"
+        aria-haspopup="listbox"
+        aria-owns="id-75c24c64-popup"
+        aria-controls="id-75c24c64-popup"
+        aria-activedescendant
+        aria-expanded="false"
+        :aria-activedescendant="open && selectedId ? `id-75c24c64-result-${selectedId}` : ''"
+        :aria-expanded="open"
+        placeholder="Search..."
+        class="search__input"
+        autocorrect="off"
+        autocapitalize="off"
+        enterkeyhint="search"
+        required
+        x-model="term"
+        x-init="$store.hotkeys.register(&#39;/&#39;, () =&gt; $el.focus())"
+        @focus="open = true"
+        @keydown="onKeyDown"
+        @pageshow.window="term = $el.value"
+        lang="en"
+        
+      >
       
         <kbd class="search__kbd" aria-hidden="true">/</kbd>
         <span class="visually-hidden" lang="en">
@@ -59,7 +90,7 @@
       
     </div>
     <template x-if="open">
-      <div class="search__popover" id="id-21329ffc-popup">
+      <div class="search__popover" id="id-75c24c64-popup">
         <div x-show="!term" class="search__info" lang="en">
           Search for lessons by title and content.
         </div>
@@ -73,8 +104,14 @@
         <ul x-show="term && results && results.length" class="search__results" role="listbox" aria-label="Search Results">
           <template x-if="term && results && results.length">
             <template x-for="(result, index) in results" :key="result.id">
-              <li role="option" :id="`id-21329ffc-result-${result.id}`">
-                <a :href="result.url" class="search__result" :aria-selected="result.id === selectedId" x-effect="result.id === selectedId && $el.scrollIntoView({ block: 'nearest' })" :data-first="index == 0">
+              <li role="option" :id="`id-75c24c64-result-${result.id}`">
+                <a
+                  :href="result.url"
+                  class="search__result"
+                  :aria-selected="result.id === selectedId"
+                  x-effect="result.id === selectedId && $el.scrollIntoView({ block: 'nearest' })"
+                  :data-first="index == 0"
+                >
                   <span class="search__note-title" x-text="result.title"></span>
                   <span class="search__note-content" x-html="result.excerpt"></span>
                   <span class="search__selected-icon" aria-hidden="true">
@@ -93,7 +130,7 @@
   </div>
 
   <div class="hide-md">
-    <a href="/basic-flow-tutorial/search/" class="icon-btn" lang="en">
+    <a href="/search/" class="icon-btn" lang="en">
   <svg xmlns="http://www.w3.org/2000/svg" width="1.125em" height="1.125em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><path d="m21 21-4.3-4.3"></path></svg>
   <span class="visually-hidden">Search</span>
 </a>
@@ -101,19 +138,40 @@
   </div>
   
 
-<div role="radiogroup" aria-label="Appearance" class="theme-switcher" x-data="" x-cloak="" lang="en">
-  <input id="id-126dc752-light" type="radio" name="appearance" x-model="$store.appearance.theme" value="light" class="visually-hidden">
-  <label for="id-126dc752-light" class="theme-switcher__label" aria-label="Light">
+<div role="radiogroup" aria-label="Appearance" class="theme-switcher" x-data x-cloak lang="en">
+  <input
+    id="id-4dbcdb89-light"
+    type="radio"
+    name="appearance"
+    x-model="$store.appearance.theme"
+    value="light"
+    class="visually-hidden"
+  >
+  <label for="id-4dbcdb89-light" class="theme-switcher__label" aria-label="Light">
     <svg xmlns="http://www.w3.org/2000/svg" width="1.125em" height="1.125em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"></circle><path d="M12 2v2"></path><path d="M12 20v2"></path><path d="m4.93 4.93 1.41 1.41"></path><path d="m17.66 17.66 1.41 1.41"></path><path d="M2 12h2"></path><path d="M20 12h2"></path><path d="m6.34 17.66-1.41 1.41"></path><path d="m19.07 4.93-1.41 1.41"></path></svg>
   </label>
 
-  <input id="id-126dc752-dark" type="radio" name="appearance" x-model="$store.appearance.theme" value="dark" class="visually-hidden">
-  <label for="id-126dc752-dark" class="theme-switcher__label" aria-label="Dark">
+  <input
+    id="id-4dbcdb89-dark"
+    type="radio"
+    name="appearance"
+    x-model="$store.appearance.theme"
+    value="dark"
+    class="visually-hidden"
+  >
+  <label for="id-4dbcdb89-dark" class="theme-switcher__label" aria-label="Dark">
     <svg xmlns="http://www.w3.org/2000/svg" width="1.125em" height="1.125em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"></path></svg>
   </label>
 
-  <input id="id-126dc752-system" type="radio" name="appearance" x-model="$store.appearance.theme" value="system" class="visually-hidden">
-  <label for="id-126dc752-system" class="theme-switcher__label" aria-label="System">
+  <input
+    id="id-4dbcdb89-system"
+    type="radio"
+    name="appearance"
+    x-model="$store.appearance.theme"
+    value="system"
+    class="visually-hidden"
+  >
+  <label for="id-4dbcdb89-system" class="theme-switcher__label" aria-label="System">
     <svg xmlns="http://www.w3.org/2000/svg" width="1.125em" height="1.125em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="14" x="2" y="3" rx="2"></rect><line x1="8" x2="16" y1="21" y2="21"></line><line x1="12" x2="12" y1="17" y2="21"></line></svg>
   </label>
 </div>
@@ -121,7 +179,12 @@
 </header>
 
       <div class="app-layout__wrapper">
-        <div class="app-layout__sidebar" x-data="scrollContainer('app:sidebar')" x-bind="container" :data-open="$store.nav.open.toString()">
+        <div
+          class="app-layout__sidebar"
+          x-data="scrollContainer('app:sidebar')"
+          x-bind="container"
+          :data-open="$store.nav.open.toString()"
+        >
           <div class="app-layout__sidebar-inner">
             
 
@@ -132,7 +195,11 @@
     <h3 id="app:sidebar:nav" class="visually-hidden" lang="en">Main</h3>
     <ul class="nav-list" role="list" aria-labelledby="app:sidebar:nav">
       <li>
-        <a href="/basic-flow-tutorial/" class="nav-list__link">
+        <a
+          href="/"
+          
+          class="nav-list__link"
+        >
           <svg xmlns="http://www.w3.org/2000/svg" width="1.125em" height="1.125em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 22v-6.57"></path><path d="M12 11h.01"></path><path d="M12 7h.01"></path><path d="M14 15.43V22"></path><path d="M15 16a5 5 0 0 0-6 0"></path><path d="M16 11h.01"></path><path d="M16 7h.01"></path><path d="M8 11h.01"></path><path d="M8 7h.01"></path><rect x="4" y="2" width="16" height="20" rx="2"></rect></svg>
           
           
@@ -141,7 +208,12 @@
       </li>
       
       <li>
-        <a href="/basic-flow-tutorial/search/" class="nav-list__link" lang="en">
+        <a
+          href="/search/"
+          
+          class="nav-list__link"
+          lang="en"
+        >
           <svg xmlns="http://www.w3.org/2000/svg" width="1.125em" height="1.125em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><path d="m21 21-4.3-4.3"></path></svg>
           <span>Search</span>
         </a>
@@ -157,14 +229,22 @@
       <ul class="nav-list" role="list" aria-labelledby="app:sidebar:section:links">
         
           <li>
-            <a href="https://www.picoflow.io" target="&quot;_blank&quot;" rel="&quot;noopener&quot;" class="nav-list__link">
+            <a
+              href="https://www.picoflow.io"
+              target=&quot;_blank&quot; rel=&quot;noopener&quot;
+              class="nav-list__link"
+            >
               <svg xmlns="http://www.w3.org/2000/svg" width="1.125em" height="1.125em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 21v-8a1 1 0 0 0-1-1h-4a1 1 0 0 0-1 1v8"></path><path d="M3 10a2 2 0 0 1 .709-1.528l7-5.999a2 2 0 0 1 2.582 0l7 5.999A2 2 0 0 1 21 10v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path></svg>
               <span>Home</span>
             </a>
           </li>
         
           <li>
-            <a href="https://www.linkedin.com/company/picoflow-io" target="&quot;_blank&quot;" rel="&quot;noopener&quot;" class="nav-list__link">
+            <a
+              href="https://www.linkedin.com/company/picoflow-io"
+              target=&quot;_blank&quot; rel=&quot;noopener&quot;
+              class="nav-list__link"
+            >
               <svg xmlns="http://www.w3.org/2000/svg" width="1.125em" height="1.125em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect width="4" height="12" x="2" y="9"></rect><circle cx="4" cy="4" r="2"></circle></svg>
               <span>LinkedIn</span>
             </a>
@@ -175,7 +255,7 @@
   
 
   <template x-if="$store.bookmarks.items.length">
-    <nav aria-labelledby="app:sidebar:section:bookmarks" class="nav-section" x-cloak="">
+    <nav aria-labelledby="app:sidebar:section:bookmarks" class="nav-section" x-cloak>
       <h3 id="app:sidebar:section:bookmarks" class="nav-section__title" lang="en">
         Bookmarks
       </h3>
@@ -197,16 +277,32 @@
       <nav aria-labelledby="app:sidebar:section:1" class="nav-section">
         <h3 id="app:sidebar:section:1" class="nav-section__title">Lessons</h3>
         
-          <div class="nav-group" data-expanded="true">
+          <div
+            class="nav-group"
             
-            <div id="app:sidebar:section:1:group:0:list">
+            data-expanded="true"
+          >
+            
+            <div 
               
-  <ul class="nav-list" role="list" aria-labelledby="app:sidebar:section:1:group:0:title" style="--nav-list-level:0">
+              id="app:sidebar:section:1:group:0:list">
+              
+  <ul 
+    class="nav-list"
+    role="list"
+    aria-labelledby="app:sidebar:section:1:group:0:title"
+    style="--nav-list-level:0">
     
-      <li>
+      <li
+        
+      >
         
           <div class="nav-list__link-with-toggle">
-            <a href="/basic-flow-tutorial/lesson/1/" class="nav-list__link">
+            <a
+              href="/lesson/1/"
+              
+              class="nav-list__link"
+            >
               <span>Lesson 1: Introduction &amp; Setup</span>
             </a>
             
@@ -216,10 +312,16 @@
         
       </li>
     
-      <li>
+      <li
+        
+      >
         
           <div class="nav-list__link-with-toggle">
-            <a href="/basic-flow-tutorial/lesson/2-models/" class="nav-list__link">
+            <a
+              href="/lesson/2-models/"
+              
+              class="nav-list__link"
+            >
               <span>Lesson 2: Model Registry &amp; Overrides</span>
             </a>
             
@@ -229,10 +331,16 @@
         
       </li>
     
-      <li>
+      <li
+        
+      >
         
           <div class="nav-list__link-with-toggle">
-            <a href="/basic-flow-tutorial/lesson/2/" class="nav-list__link">
+            <a
+              href="/lesson/2/"
+              
+              class="nav-list__link"
+            >
               <span>Lesson 3: Flow Shell &amp; Engine Loop</span>
             </a>
             
@@ -242,10 +350,16 @@
         
       </li>
     
-      <li>
+      <li
+        
+      >
         
           <div class="nav-list__link-with-toggle">
-            <a href="/basic-flow-tutorial/lesson/3/" class="nav-list__link">
+            <a
+              href="/lesson/3/"
+              
+              class="nav-list__link"
+            >
               <span>Lesson 4: Multi-Call Capture (WeatherStep)</span>
             </a>
             
@@ -255,10 +369,16 @@
         
       </li>
     
-      <li>
+      <li
+        
+      >
         
           <div class="nav-list__link-with-toggle">
-            <a href="/basic-flow-tutorial/lesson/4/" class="nav-list__link">
+            <a
+              href="/lesson/4/"
+              
+              class="nav-list__link"
+            >
               <span>Lesson 5: FooLogicStep — Deterministic Bridge</span>
             </a>
             
@@ -268,10 +388,16 @@
         
       </li>
     
-      <li>
+      <li
+        
+      >
         
           <div class="nav-list__link-with-toggle">
-            <a href="/basic-flow-tutorial/lesson/5/" class="nav-list__link">
+            <a
+              href="/lesson/5/"
+              
+              class="nav-list__link"
+            >
               <span>Lesson 6: GooLogicStep — Into Favorites</span>
             </a>
             
@@ -281,10 +407,16 @@
         
       </li>
     
-      <li>
+      <li
+        
+      >
         
           <div class="nav-list__link-with-toggle">
-            <a href="/basic-flow-tutorial/lesson/6/" class="nav-list__link">
+            <a
+              href="/lesson/6/"
+              
+              class="nav-list__link"
+            >
               <span>Lesson 7: FavoritesStep — Structured Output Loop</span>
             </a>
             
@@ -294,10 +426,16 @@
         
       </li>
     
-      <li>
+      <li
+        
+      >
         
           <div class="nav-list__link-with-toggle">
-            <a href="/basic-flow-tutorial/lesson/7/" class="nav-list__link">
+            <a
+              href="/lesson/7/"
+              
+              class="nav-list__link"
+            >
               <span>Lesson 8: NameStep + InContext Sub-Agent</span>
             </a>
             
@@ -307,10 +445,16 @@
         
       </li>
     
-      <li>
+      <li
+        
+      >
         
           <div class="nav-list__link-with-toggle">
-            <a href="/basic-flow-tutorial/lesson/8/" class="nav-list__link">
+            <a
+              href="/lesson/8/"
+              
+              class="nav-list__link"
+            >
               <span>Lesson 9: DOBStep — Prompt Templating</span>
             </a>
             
@@ -320,10 +464,16 @@
         
       </li>
     
-      <li>
+      <li
+        
+      >
         
           <div class="nav-list__link-with-toggle">
-            <a href="/basic-flow-tutorial/lesson/9/" aria-current="page" class="nav-list__link">
+            <a
+              href="/lesson/9/"
+              aria-current=page
+              class="nav-list__link"
+            >
               <span>Lesson 10: AddressStep → EndStep</span>
             </a>
             
@@ -333,10 +483,16 @@
         
       </li>
     
-      <li>
+      <li
+        
+      >
         
           <div class="nav-list__link-with-toggle">
-            <a href="/basic-flow-tutorial/lesson/10/" class="nav-list__link">
+            <a
+              href="/lesson/10/"
+              
+              class="nav-list__link"
+            >
               <span>Lesson 11: PresidentStep + Concurrent Fan-Out</span>
             </a>
             
@@ -361,8 +517,8 @@
           </div>
         </div>
         <div>
-<div class="page" data-pagefind-body="">
-  <main class="page__main" id="app-content">
+<div class="page" data-pagefind-body>
+  <main class="page__main" id="app-content" >
     <article>
       <h1 class="page__title">Lesson 10: AddressStep → EndStep</h1>
       <div class="article">
@@ -378,7 +534,15 @@
 <span class="line" data-line="5"><span style="--shiki-light:#7C7F93;--shiki-dark:#939AB7">}</span><span style="--shiki-light:#4C4F69;--shiki-dark:#CAD3F5">]</span><span style="--shiki-light:#7C7F93;--shiki-dark:#939AB7">;</span></span>
 <span class="line" data-line="6"><span style="--shiki-light:#1E66F5;--shiki-light-font-style:italic;--shiki-dark:#8AADF4;--shiki-dark-font-style:italic">getTool</span><span style="--shiki-light:#4C4F69;--shiki-dark:#CAD3F5">(): [</span><span style="--shiki-light:#40A02B;--shiki-dark:#A6DA95">'address'</span><span style="--shiki-light:#7C7F93;--shiki-dark:#939AB7">,</span><span style="--shiki-light:#40A02B;--shiki-dark:#A6DA95"> 'end_chat'</span><span style="--shiki-light:#4C4F69;--shiki-dark:#CAD3F5">]</span><span style="--shiki-light:#7C7F93;--shiki-dark:#939AB7">;</span></span></code></pre>
 
-          <button title="Copy to clipboard" aria-label="Copy to clipboard" class="code-block__copy" x-cloak="" x-data="copyToClipboard()" x-bind="copyBtn" lang="en">
+          <button
+            title="Copy to clipboard"
+            aria-label="Copy to clipboard"
+            class="code-block__copy"
+            x-cloak
+            x-data="copyToClipboard()"
+            x-bind="copyBtn"
+            lang="en"
+          >
             <svg x-show="!copied">
               <use xlink:href="#icon-copy"></use>
             </svg>
@@ -399,7 +563,15 @@
 <span class="line" data-line="7"><span style="--shiki-light:#4C4F69;--shiki-dark:#CAD3F5">  return </span><span style="--shiki-light:#7C7F93;--shiki-dark:#939AB7">{</span><span style="--shiki-light:#4C4F69;--shiki-dark:#CAD3F5"> step</span><span style="--shiki-light:#7C7F93;--shiki-dark:#939AB7">:</span><span style="--shiki-light:#4C4F69;--shiki-dark:#CAD3F5"> EndStep</span><span style="--shiki-light:#7C7F93;--shiki-dark:#939AB7">,</span><span style="--shiki-light:#4C4F69;--shiki-dark:#CAD3F5"> prompt</span><span style="--shiki-light:#7C7F93;--shiki-dark:#939AB7">:</span><span style="--shiki-light:#4C4F69;--shiki-dark:#CAD3F5"> DemoPrompt</span><span style="--shiki-light:#179299;--shiki-dark:#8BD5CA">.</span><span style="--shiki-light:#4C4F69;--shiki-dark:#CAD3F5">AbruptEnd</span><span style="--shiki-light:#7C7F93;--shiki-dark:#939AB7">,</span><span style="--shiki-light:#4C4F69;--shiki-dark:#CAD3F5"> state</span><span style="--shiki-light:#7C7F93;--shiki-dark:#939AB7">:</span><span style="--shiki-light:#7C7F93;--shiki-dark:#939AB7"> {</span><span style="--shiki-light:#4C4F69;--shiki-dark:#CAD3F5"> fromAddress</span><span style="--shiki-light:#7C7F93;--shiki-dark:#939AB7">:</span><span style="--shiki-light:#FE640B;--shiki-dark:#F5A97F"> 5</span><span style="--shiki-light:#7C7F93;--shiki-dark:#939AB7"> }</span><span style="--shiki-light:#7C7F93;--shiki-dark:#939AB7"> }</span><span style="--shiki-light:#4C4F69;--shiki-dark:#CAD3F5">;</span></span>
 <span class="line" data-line="8"><span style="--shiki-light:#7C7F93;--shiki-dark:#939AB7">}</span></span></code></pre>
 
-          <button title="Copy to clipboard" aria-label="Copy to clipboard" class="code-block__copy" x-cloak="" x-data="copyToClipboard()" x-bind="copyBtn" lang="en">
+          <button
+            title="Copy to clipboard"
+            aria-label="Copy to clipboard"
+            class="code-block__copy"
+            x-cloak
+            x-data="copyToClipboard()"
+            x-bind="copyBtn"
+            lang="en"
+          >
             <svg x-show="!copied">
               <use xlink:href="#icon-copy"></use>
             </svg>
@@ -428,15 +600,15 @@
 
   <div class="page-nav">
     
-      <a href="/basic-flow-tutorial/lesson/8/" class="page-nav__link" data-type="prev">
+      <a href="/lesson/8/" class="page-nav__link" data-type="prev">
         <svg xmlns="http://www.w3.org/2000/svg" width="1.125em" height="1.125em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="page-nav__icon"><path d="m12 19-7-7 7-7"></path><path d="M19 12H5"></path></svg>
-        <span class="page-nav__type" en="">Previous</span>
+        <span class="page-nav__type" en>Previous</span>
         <span class="page-nav__label">Lesson 9: DOBStep — Prompt Templating</span>
       </a>
     
     
-      <a href="/basic-flow-tutorial/lesson/10/" class="page-nav__link" data-type="next">
-        <span class="page-nav__type" en="">Next</span>
+      <a href="/lesson/10/" class="page-nav__link" data-type="next">
+        <span class="page-nav__type" en>Next</span>
         <span class="page-nav__label">Lesson 11: PresidentStep + Concurrent Fan-Out</span>
         <svg xmlns="http://www.w3.org/2000/svg" width="1.125em" height="1.125em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="page-nav__icon"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg>
       </a>
@@ -455,7 +627,13 @@
 <aside class="stack" data-stack="6">
   
   
-  <div class="toc" data-pagefind-ignore="" x-data="toc" x-on:scroll.window.throttle.30ms="onScroll()" :style="indicatorStyles">
+  <div
+    class="toc"
+    data-pagefind-ignore
+    x-data="toc"
+    x-on:scroll.window.throttle.30ms="onScroll()"
+    :style="indicatorStyles"
+  >
     <h2 class="toc__label" id="app-panel-toc" lang="en">
       On this page
     </h2>
@@ -495,9 +673,16 @@
   
   
 
-  <div class="inline" data-pagefind-ignore="">
+  <div class="inline" data-pagefind-ignore>
     
-  <button x-data="" x-cloak="" type="button" class="toggle-btn" :aria-pressed="$store.bookmarks.is('/basic-flow-tutorial/lesson/9/')" @click="$store.bookmarks.toggle('/basic-flow-tutorial/lesson/9/')" lang="en">
+  <button
+    x-data x-cloak
+    type="button"
+    class="toggle-btn"
+    :aria-pressed="$store.bookmarks.is('/lesson/9/')"
+    @click="$store.bookmarks.toggle('/lesson/9/')"
+    lang="en"
+  >
     <svg xmlns="http://www.w3.org/2000/svg" width="1.125em" height="1.125em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m19 21-7-4-7 4V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v16z"></path></svg>
     <span>Bookmark</span>
   </button>
@@ -520,13 +705,13 @@
     </div>
 
     <footer class="picoclaw-footer">
-      <img src="/basic-flow-tutorial/images/picoclaw.png" alt="picoClaw" class="picoclaw-footer__logo">
+      <img src="/images/picoclaw.png" alt="picoClaw" class="picoclaw-footer__logo">
       <span>Intelligently created by <strong>picoClaw</strong></span>
     </footer>
 
-    <script type="module" src="/basic-flow-tutorial/js/app.js" data-base="/basic-flow-tutorial/"></script>
+    <script type="module" src="/js/app.js" data-base="/"></script>
 
-    <div aria-hidden="true" hidden="">
+    <div aria-hidden="true" hidden>
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" id="icon-hash"><line x1="4" x2="20" y1="9" y2="9"></line><line x1="4" x2="20" y1="15" y2="15"></line><line x1="10" x2="8" y1="3" y2="21"></line><line x1="16" x2="14" y1="3" y2="21"></line></svg>
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" id="icon-anchor-link"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg>
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" id="icon-copy"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"></rect><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"></path></svg>
