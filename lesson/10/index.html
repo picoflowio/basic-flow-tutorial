@@ -62,11 +62,11 @@
         role="combobox"
         aria-autocomplete="list"
         aria-haspopup="listbox"
-        aria-owns="id-77c89033-popup"
-        aria-controls="id-77c89033-popup"
+        aria-owns="id-f8209ca1-popup"
+        aria-controls="id-f8209ca1-popup"
         aria-activedescendant
         aria-expanded="false"
-        :aria-activedescendant="open && selectedId ? `id-77c89033-result-${selectedId}` : ''"
+        :aria-activedescendant="open && selectedId ? `id-f8209ca1-result-${selectedId}` : ''"
         :aria-expanded="open"
         placeholder="Search..."
         class="search__input"
@@ -90,7 +90,7 @@
       
     </div>
     <template x-if="open">
-      <div class="search__popover" id="id-77c89033-popup">
+      <div class="search__popover" id="id-f8209ca1-popup">
         <div x-show="!term" class="search__info" lang="en">
           Search for lessons by title and content.
         </div>
@@ -104,7 +104,7 @@
         <ul x-show="term && results && results.length" class="search__results" role="listbox" aria-label="Search Results">
           <template x-if="term && results && results.length">
             <template x-for="(result, index) in results" :key="result.id">
-              <li role="option" :id="`id-77c89033-result-${result.id}`">
+              <li role="option" :id="`id-f8209ca1-result-${result.id}`">
                 <a
                   :href="result.url"
                   class="search__result"
@@ -140,38 +140,38 @@
 
 <div role="radiogroup" aria-label="Appearance" class="theme-switcher" x-data x-cloak lang="en">
   <input
-    id="id-82e7fe39-light"
+    id="id-decfcb37-light"
     type="radio"
     name="appearance"
     x-model="$store.appearance.theme"
     value="light"
     class="visually-hidden"
   >
-  <label for="id-82e7fe39-light" class="theme-switcher__label" aria-label="Light">
+  <label for="id-decfcb37-light" class="theme-switcher__label" aria-label="Light">
     <svg xmlns="http://www.w3.org/2000/svg" width="1.125em" height="1.125em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"></circle><path d="M12 2v2"></path><path d="M12 20v2"></path><path d="m4.93 4.93 1.41 1.41"></path><path d="m17.66 17.66 1.41 1.41"></path><path d="M2 12h2"></path><path d="M20 12h2"></path><path d="m6.34 17.66-1.41 1.41"></path><path d="m19.07 4.93-1.41 1.41"></path></svg>
   </label>
 
   <input
-    id="id-82e7fe39-dark"
+    id="id-decfcb37-dark"
     type="radio"
     name="appearance"
     x-model="$store.appearance.theme"
     value="dark"
     class="visually-hidden"
   >
-  <label for="id-82e7fe39-dark" class="theme-switcher__label" aria-label="Dark">
+  <label for="id-decfcb37-dark" class="theme-switcher__label" aria-label="Dark">
     <svg xmlns="http://www.w3.org/2000/svg" width="1.125em" height="1.125em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"></path></svg>
   </label>
 
   <input
-    id="id-82e7fe39-system"
+    id="id-decfcb37-system"
     type="radio"
     name="appearance"
     x-model="$store.appearance.theme"
     value="system"
     class="visually-hidden"
   >
-  <label for="id-82e7fe39-system" class="theme-switcher__label" aria-label="System">
+  <label for="id-decfcb37-system" class="theme-switcher__label" aria-label="System">
     <svg xmlns="http://www.w3.org/2000/svg" width="1.125em" height="1.125em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="14" x="2" y="3" rx="2"></rect><line x1="8" x2="16" y1="21" y2="21"></line><line x1="12" x2="12" y1="17" y2="21"></line></svg>
   </label>
 </div>
@@ -597,6 +597,40 @@
 <li><code>onBotResponse</code> aggregates answers back into the parent.</li>
 </ul>
 <hr>
+<h2 id="triggering-it-over-http" tabindex="-1">Triggering It Over HTTP <a class="anchor-link" href="#triggering-it-over-http" aria-hidden="true"><svg><use xlink:href="#icon-anchor-link"></use></svg></a></h2>
+<p>To force the concurrent path from outside the UI, hit the flow runner directly:</p>
+
+        <div class="code-block">
+          <pre class="shiki shiki-themes catppuccin-latte catppuccin-macchiato has-line-numbers" style="--shiki-light:#4c4f69;--shiki-dark:#cad3f5;--shiki-light-bg:#eff1f5;--shiki-dark-bg:#24273a" tabindex="0"><code class="language-bash" data-line-count="7"><span class="line" data-line="1"><span style="--shiki-light:#1E66F5;--shiki-light-font-style:italic;--shiki-dark:#8AADF4;--shiki-dark-font-style:italic">curl</span><span style="--shiki-light:#40A02B;--shiki-dark:#A6DA95"> -X</span><span style="--shiki-light:#40A02B;--shiki-dark:#A6DA95"> POST</span><span style="--shiki-light:#40A02B;--shiki-dark:#A6DA95"> http://localhost:8000/ai/run</span><span style="--shiki-light:#EA76CB;--shiki-dark:#F5BDE6"> \</span></span>
+<span class="line" data-line="2"><span style="--shiki-light:#40A02B;--shiki-dark:#A6DA95">  -H</span><span style="--shiki-light:#40A02B;--shiki-dark:#A6DA95"> "Content-Type: application/json"</span><span style="--shiki-light:#EA76CB;--shiki-dark:#F5BDE6"> \</span></span>
+<span class="line" data-line="3"><span style="--shiki-light:#40A02B;--shiki-dark:#A6DA95">  -H</span><span style="--shiki-light:#40A02B;--shiki-dark:#A6DA95"> "CHAT_SESSION_ID: &#x3C;uuid>"</span><span style="--shiki-light:#EA76CB;--shiki-dark:#F5BDE6"> \</span></span>
+<span class="line" data-line="4"><span style="--shiki-light:#40A02B;--shiki-dark:#A6DA95">  -d</span><span style="--shiki-light:#40A02B;--shiki-dark:#A6DA95"> '{ </span></span>
+<span class="line" data-line="5"><span style="--shiki-light:#40A02B;--shiki-dark:#A6DA95">        "flowName": "BasicFlow",</span></span>
+<span class="line" data-line="6"><span style="--shiki-light:#40A02B;--shiki-dark:#A6DA95">        "config": { "_concurrent": true }</span></span>
+<span class="line" data-line="7"><span style="--shiki-light:#40A02B;--shiki-dark:#A6DA95">      }'</span></span></code></pre>
+
+          <button
+            title="Copy to clipboard"
+            aria-label="Copy to clipboard"
+            class="code-block__copy"
+            x-cloak
+            x-data="copyToClipboard()"
+            x-bind="copyBtn"
+            lang="en"
+          >
+            <svg x-show="!copied">
+              <use xlink:href="#icon-copy"></use>
+            </svg>
+            <svg x-show="copied">
+              <use xlink:href="#icon-check"></use>
+            </svg>
+          </button>
+        </div>
+      <ul>
+<li><code>_concurrent: true</code> tells <code>BasicFlow</code> to activate the <code>PresidentStep</code> fan‑out.</li>
+<li>Add a <code>CHAT_SESSION_ID</code> header to keep runs isolated if you are issuing multiple requests.</li>
+</ul>
+<hr>
 <h2 id="when-to-use" tabindex="-1">When to Use <a class="anchor-link" href="#when-to-use" aria-hidden="true"><svg><use xlink:href="#icon-anchor-link"></use></svg></a></h2>
 <ul>
 <li>Batch evaluations or trivia fan-out.</li>
@@ -657,6 +691,12 @@
       <li style="--level: 1" class="toc__item">
         <a href="#spawning-concurrent-runs" class="toc__link" :data-active="'spawning-concurrent-runs' === activeId" @click="onNavigate('spawning-concurrent-runs')">
           Spawning Concurrent Runs 
+        </a>
+      </li>
+      
+      <li style="--level: 1" class="toc__item">
+        <a href="#triggering-it-over-http" class="toc__link" :data-active="'triggering-it-over-http' === activeId" @click="onNavigate('triggering-it-over-http')">
+          Triggering It Over HTTP 
         </a>
       </li>
       
